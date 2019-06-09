@@ -1,0 +1,25 @@
+<div class="main user">
+  <div class="container">
+    <% if @full_date %>
+      <h1 class="users-heading"><%= @full_date %></h1>
+    <% else %>
+      <h1 class="users-heading">ユーザー一覧</h1>
+    <% end %>
+    <% @users.each do |user| %>
+      <div class="users-index-item">
+        <div class="user-right">
+          <%= link_to(user.name, "/users/#{user.id}") %>
+        </div>
+        <span><%= user.partcord %></span>
+        <% if @full_date %>
+          <% if Crewshift.find_by(user_id: user, full_date: @full_date).already == 1 %>
+            <p><span style="color: #ff4d75;">済</span></p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @full_date %>
+      <div class="index-shift-btn" style="margin-top: 20px;"><%= link_to 'Exel出力', controller: "users", action: "index", format: :xlsx, full_each_date: @full_date %></div>
+    <% end %>
+  </div>
+</div>

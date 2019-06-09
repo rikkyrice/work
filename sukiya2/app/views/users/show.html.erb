@@ -1,0 +1,70 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <% if @current_user.try(:admin?) %>
+        <h1 style="font-size: 20px;"><%= link_to("管理画面", "/admin") %></h1>
+      <% end %>
+      <h2><%= @user.name %></h2>
+      <p><%= @user.partcord %></p>
+      <%= link_to("編集", "/users/#{@user.id}/edit") %>
+
+      <% if @current_user.id == @user.id && @current_user.chief == 1%>
+        <%= form_tag("/excel_upload", {multipart: true}) do %>
+        <div class="form-sending-item">
+          <span>最新のシフト希望表をアップロード</span><br>
+          <input name="template" type="file">
+          <div><input type="submit" value="送信" class="shift-container-btn"></div>
+        </div>
+        <% end %>
+      <% end %>
+
+      <% if @current_user.id == @user.id && @current_user.chief == 1%>
+        <%= form_tag("/form") do %>
+        <div class="form-sending-item-2">
+          <div class="form-sending-item-2-2">
+            <div>
+              <span class="control-label" for="">回収する週</span><%= date_field_tag(:date, Date.today.beginning_of_week+3.week) %>
+            </div>
+            <div>
+              <span class="control-label" for="">期限</span><%= date_field_tag(:expire, Date.today.next_week) %>
+            </div>
+          </div>
+          <div><input type="submit" value="送信" class="shift-container-btn"></div>
+        </div>
+        <% end %>
+      <% end %>
+
+      <% if @thatdates %>
+        <% @thatdates.each do |thatdate| %>
+          <% thatdate_sum = thatdate.expire.year*10000 + thatdate.expire.month*100 + thatdate.expire.day %>
+          <% if @current_date_sum < thatdate_sum %>
+            <% if @current_user.id == @user.id %>
+              <div class="form-sending-item-2">
+                <% crewshift = Crewshift.find_by(user_id: @user.id, full_date: thatdate.full_date) %>
+                <% if crewshift.already == 1 %>
+                  <span class="control-label"><%= link_to("#{thatdate.full_date.month}/#{thatdate.full_date.day}~#{thatdate.full_date.end_of_week.month}/#{thatdate.full_date.end_of_week.day}の希望シフトを提出しました/", "/users/#{@current_user.id}/#{thatdate.full_date.to_s}/shift") %> </span>
+                  <p class="control-label-e"><%= link_to("編集", "/users/#{@current_user.id}/#{thatdate.full_date.to_s}/shift") %></p>
+                  <span class="control-label-a"><%= link_to("(期限:#{thatdate.expire.month}/#{thatdate.expire.day} 00:00)", "/users/#{@current_user.id}/#{thatdate.full_date.to_s}/shift") %></span>
+                <% else %>
+                  <span class="control-label"><%= link_to("#{thatdate.full_date.month}/#{thatdate.full_date.day}~#{thatdate.full_date.end_of_week.month}/#{thatdate.full_date.end_of_week.day}の希望シフトを提出してください", "/users/#{@current_user.id}/#{thatdate.full_date.to_s}/shift") %> </span>
+                  <span class="control-label-a"><%= link_to("(期限:#{thatdate.expire.month}/#{thatdate.expire.day} 00:00)", "/users/#{@current_user.id}/#{thatdate.full_date.to_s}/shift") %></span>
+                <% end %>
+                <% if @current_user.chief == 1 %>
+                  <div class="shift-index-box">
+                      <%= form_tag("/form_delete/#{thatdate.full_date.to_s}") do %>
+                        <div><input type="submit" value="削除" class="shift-container-btn form-delete"></div>
+                      <% end %>
+                      <div class="index-shift-btn"><%= link_to "ユーザ状態", controller: "users", action: "index", full_date: thatdate.full_date.to_s %></div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <% Crewshift.destroy_all(full_date: thatdate.full_date) %>
+            <% thatdate.destroy %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

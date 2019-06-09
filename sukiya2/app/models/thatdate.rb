@@ -1,0 +1,2 @@
+class Thatdate < ApplicationRecord
+end

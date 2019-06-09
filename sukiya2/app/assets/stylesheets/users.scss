@@ -1,0 +1,539 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/* users/index ================================ */
+.users-heading {
+  font-weight: 300;
+  margin: 60px 0 20px;
+  font-size: 36px;
+  color: #bcc8d4;
+}
+
+@media all and (max-width: 1024px){
+  .users-heading {
+    margin: 0 200px;
+  }
+}
+@media all and (max-width: 1000px){
+  .users-heading {
+    margin: 0 70px;
+  }
+}
+
+@media all and (max-width: 670px) {
+  .users-heading {
+    margin: 0;
+  }
+}
+
+.users-index-item {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
+}
+
+.users-index-item span{
+  text-align: left;
+  width: 20%;
+}
+
+.users-index-item p{
+  text-align: right;
+  float: right;
+}
+
+.form-sending-item {
+  padding: 20px 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.form-sending-item-2 {
+  padding: 20px 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
+}
+.form-sending-item-2-2 {
+  text-align: right;
+  padding: 0 150px 0 125px;
+  width: 100%;
+}
+
+@media all and (max-width: 670px) {
+  .form-sending-item {
+    padding: 10px 20px;
+  }
+  .form-sending-item-2 {
+    padding: 10px 20px;
+  }
+  .form-sending-item-2-2 {
+    text-align: right;
+    padding: 0 40px;
+    width: 100%;
+  }
+}
+
+.shift-container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 50px 100px;
+  clear: both;
+  display: inline-block;
+}
+
+
+@media all and (max-width: 1000px){
+  .shift-container {
+    max-width: 1440px;
+    // margin: 60px 100px;
+    // padding: 0 50px;
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 40px;
+    clear: both;
+    display: inline-block;
+  }
+}
+@media all and (max-width: 670px){
+  .shift-container {
+    max-width: 1440px;
+    // margin: 60px 100px;
+    // padding: 0 50px;
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 100px;
+    clear: both;
+    display: inline-block;
+  }
+}
+
+// .shift-container-btn:hover {
+// background-color: #31A9EE; /* マウスオーバー時の背景色を指定する */
+// }
+//
+// .shift-container-btn input {
+//   font-size: 16px;
+//   color: #ffffff;
+// }
+
+.shift-sending-item {
+  padding: 20px 30px 5px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 150px;
+  margin: 10px;
+  float: left;
+}
+
+@media all and (max-width: 670px){
+  .shift-sending-item {
+    padding: 20px 30px 5px 30px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+    display: table;
+    width: 150px;
+    margin: 10px auto;
+    float: none;
+  }
+}
+
+.shift-sending-item p{
+  font-size: 14px;
+}
+
+.form-sending-item a{
+  text-decoration: none;
+}
+
+.form-sending-item-2 a{
+  text-decoration: none;
+}
+
+.user-show-item {
+  margin: 0px;
+}
+
+.user-show-item li{
+  color: #334466;
+  font-size: 14px;
+  width: auto;
+  margin: 0px;
+  display: inline-block;
+}
+
+.user-left img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  object-fit: cover;
+}
+
+.user-name a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.user-name a:hover {
+  color: #FFD652;
+}
+
+.user-left {
+  float: left;
+  width: 10%;
+}
+
+.user-right {
+  width: 40%;
+  padding-left: 25px;
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* users/show ================================ */
+.user-show {
+  text-align: center;
+}
+
+.user {
+  padding: 0px 400px;
+  margin-bottom: 20px;
+}
+
+@media all and (max-width: 1024px) {
+  .user {
+    padding: 0 100px;
+  }
+}
+
+@media all and (max-width: 670px) {
+  .user {
+    padding: 0;
+  }
+}
+
+.user img {
+  width: 80px;
+  height: 80px;
+  border-radius: 40%;
+  box-shadow: 0 2px 6px #c1ced7;
+  margin: 20px 0 10px;
+  object-fit: cover;
+}
+
+.user h2 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.user p {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.user a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+.user span {
+  color: #333333;
+  font-weight: 200;
+  padding: 0 6px 0 8px;
+}
+
+.user-tabs {
+  margin-top: 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs li {
+  float: left;
+}
+
+.user-tabs li.active {
+  border-bottom: 2px solid #FFD652;
+}
+
+.user-tabs li.active a {
+  color: #57575f;
+}
+
+.user-tabs a {
+  display: inline-block;
+  padding: 16px 30px;
+  color: #afb6bf;
+}
+
+.user .control-label{
+  font-size: 16px;
+  padding: 0;
+}
+.control-label-e {
+  display: inline;
+}
+.control-label-e a{
+  color: #ff4d75;
+  display: inline;
+}
+.control-label a{
+  font-size: 13px;
+  color: #333333;
+}
+
+@media all and (max-width: 670px) {
+  .control-label-a a{
+    display: inline-block;
+  }
+}
+
+.btn{
+  font-size: 16px;
+  // border: 2px solid #555555;
+  // border-radius: 8px;
+}
+
+/* users/new, users/edit ================================ */
+.users-form input {
+  margin-bottom: 15px;
+}
+
+.fa-angle-down {
+  display: none;
+}
+
+@media all and (max-width: 670px) {
+
+  .fa-angle-down {
+    margin-left: 40px;
+    color: #BBBBBB;
+    transform: scale(1, 1);
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  #mon-menu {
+    display: none;
+  }
+  #tue-menu {
+    display: none;
+  }
+  #wed-menu {
+    display: none;
+  }
+  #thu-menu {
+    display: none;
+  }
+  #fri-menu {
+    display: none;
+  }
+  #sat-menu {
+    display: none;
+  }
+  #sun-menu {
+    display: none;
+  }
+}
+
+#confirm-window {
+  position: fixed;
+  top: 200px;
+  left: 400px;
+  z-index: 4;
+  padding: 2px 20px 10px 10px;
+  background-color: white;
+  overflow: scroll;
+  box-shadow: 0 2px 6px #c1ced7;
+  width: 600px;;
+  height: 250px;
+  text-align: right;
+  display: none;
+  border: 3px solid #ff4d75;
+}
+#confirm-delete {
+  display: block;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.confirm-item {
+  text-align: left;
+}
+
+.confirm-item p {
+  margin-bottom: 10px;
+}
+@media all and (max-width: 1024px) {
+  #confirm-window {
+    font-size: 13px;
+    position: fixed;
+    top: 200px;
+    left: 200px;
+    z-index: 4;
+    padding: 5px 10px 10px 20px;
+    background-color: white;
+    overflow: scroll;
+    box-shadow: 0 2px 6px #c1ced7;
+    // display: table;
+    width: 400px;;
+    height: 250px;
+    text-align: right;
+  }
+}
+@media all and (max-width: 670px) {
+  #confirm-window {
+    font-size: 13px;
+    position: fixed;
+    top: 200px;
+    left: 60px;
+    z-index: 4;
+    padding: 5px 10px 10px 20px;
+    background-color: white;
+    overflow: scroll;
+    box-shadow: 0 2px 6px #c1ced7;
+    // display: table;
+    width: 250px;;
+    height: 300px;
+    text-align: right;
+  }
+}
+
+.btn-group {
+  float: right;
+  margin-top: 20px;
+  width: 170px;
+}
+
+.shift-delete {
+  float: right;
+  color: #f7f7f7;
+  font-size: 16px;
+  padding-top: 2px;
+}
+
+.confirm {
+  float: left;
+  margin-right: 10px;
+  color: #f7f7f7;
+  font-size: 16px;
+  padding-top: 2px;
+}
+
+.submit {
+  float: right;
+  margin-left: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s linear;
+}
+.overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+input[type="radio"] {
+display: none; /* ラジオボタンを非表示にする */
+}
+
+input[type="radio"]:checked + label {
+background: rgb(251, 170, 88);/* マウス選択時の背景色を指定する */
+color: #ffffff; /* マウス選択時のフォント色を指定する */
+border: 2px solid rgb(251, 170, 88);
+}
+
+input[type="submit"]:active + label{
+background: rgb(251, 170, 88);/* マウス選択時の背景色を指定する */
+color: #ffffff; /* マウス選択時のフォント色を指定する */
+border: 2px solid rgb(251, 170, 88);
+}
+
+label:hover {
+background-color: #EEEEEE; /* マウスオーバー時の背景色を指定する */
+}
+
+label {
+display: block;	/* ブロックレベル要素化する */	/* 要素の左寄せ・回り込を指定する */
+margin: 5px;	/* ボックス外側の余白を指定する */
+margin: 10px;
+padding-top: 4px;
+padding-left: 1px;
+width: 70px;	/* ボックスの横幅を指定する */
+height: 30px;	/* ボックスの高さを指定する */
+color: #BBBBBB;	/* フォントの色を指定 */
+text-align: center;	/* テキストのセンタリングを指定する */
+// line-height: 45px;	/* 行の高さを指定する */
+cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+border: 2px solid #BBBBBB;/* ボックスの境界線を実線で指定する */
+border-radius: 8px;	/* 角丸を指定する */
+font-size: 12px;
+}
+
+.shift-container-btn {
+  color: white;
+  font-size: 16px;
+  float: right;
+  padding: 1px;
+  display: block;
+  margin: 5px;
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  background-color: rgb(251, 170, 88);
+  cursor: pointer;
+  border: 2px solid rgb(251, 170, 88);/* ボックスの境界線を実線で指定する */
+  border-radius: 8px;
+}
+.shift-container-btn:hover{
+  color: rgb(251, 170, 88);
+  background-color: white;
+  border: 2px solid rgb(251, 170, 88);
+}
+.index-shift-btn {
+  color: white;
+  font-size: 14px;
+  float: right;
+  padding-top: 3px;
+  display: block;
+  margin: 5px;
+  width: 90px;
+  height: 30px;
+  text-align: center;
+  background-color: rgb(251, 170, 88);
+  cursor: pointer;
+  border: 2px solid rgb(251, 170, 88);/* ボックスの境界線を実線で指定する */
+  border-radius: 8px;
+}
+.index-shift-btn:hover{
+  color: rgb(251, 170, 88);
+  background-color: white;
+  border: 2px solid rgb(251, 170, 88);
+}

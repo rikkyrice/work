@@ -1,0 +1,37 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">新規クルー登録</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <%= form_tag("/users/create") do %>
+          <% if @error_message %>
+            <div class="form-error">
+              <%= @error_message %>
+            </div>
+          <% else %>
+            <% @user.errors.full_messages.each do |message| %>
+              <div class="form-error">
+                <%= message %>
+              </div>
+            <% end %>
+          <% end %>
+          <p>クルー名</p>
+          <input name="name" value="<%= @user.name %>">
+
+          <p>パートコード</p>
+          <input name="partcord" value="<%= @user.partcord %>">
+
+          <p>パスワード</p>
+          <input name="password" type="password" value="<%= @user.password %>">
+
+          <p>確認用のパスワード</p>
+          <input name="confirm_password" type="password" value="<%= @confirm_password %>">
+
+          <input type="radio" name="chief" value="1" id="chief"><label for="chief" style="width: 125px;">チーフ/リーダー</label>
+
+          <input type="submit" value="新規登録">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

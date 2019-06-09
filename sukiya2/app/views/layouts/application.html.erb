@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シフト希望提出アプリ</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("/") do %>
+          <img src="/sukiya_logo.jpg">
+          <p>シフト希望提出アプリ</p>
+        <% end %>
+      </div>
+
+      <span class="fa fa-bars menu-icon" id="open-menus"></span>
+
+      <ul class="header-menus">
+        <% if session[:user_id] %>
+          <li>
+            <%= link_to("#{@current_user.name}さん", "/users/#{@current_user.id}") %>
+          </li>
+          <li>
+            <%= link_to("使い方", "/home/about") %>
+          </li>
+          <% if @current_user.chief == 1 %>
+            <li>
+              <%= link_to("クルー登録", "/signup") %>
+            </li>
+            <li>
+              <%= link_to("ユーザ一覧", "/users/index") %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to("ログアウト", "/logout", {method: "post"}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("使い方", "/home/about") %>
+          </li>
+          <li>
+            <%= link_to("ログイン", "/login") %>
+          </li>
+        <% end %>
+      </ul>
+
+    </header>
+    <div id="hide-header">
+      <ul id="hide-header-menus">
+        <% if session[:user_id] %>
+          <li>
+            <%= link_to("#{@current_user.name}さん", "/users/#{@current_user.id}") %>
+          </li>
+          <li>
+            <%= link_to("使い方", "/home/about") %>
+          </li>
+          <% if @current_user.chief == 1 %>
+            <li>
+              <%= link_to("クルー登録", "/signup") %>
+            </li>
+            <li>
+              <%= link_to("ユーザ一覧", "/users/index") %>
+            </li>
+          <% end %>
+          <li>
+            <%= link_to("ログアウト", "/logout", {method: "post"}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("使い方", "/home/about") %>
+          </li>
+          <li>
+            <%= link_to("ログイン", "/login") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

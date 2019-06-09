@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 1
+  expire: 2019-06-08
+  full_date: 2019-06-08
+
+two:
+  date: 1
+  expire: 2019-06-08
+  full_date: 2019-06-08

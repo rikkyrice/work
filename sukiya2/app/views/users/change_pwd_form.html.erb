@@ -1,0 +1,32 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">パスワードを変更する</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% else %>
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= form_tag("/users/#{@user.id}/change_pwd") do %>
+            <p>現在のパスワード</p>
+            <input name="password" type="password" value="<%= @user.password %>">
+            <p>新しいパスワード</p>
+            <input name="new_password" type="passwrod" value="<%= @new_password %>">
+            <p>パスワードの確認</p>
+            <input name="confirm_password" type="password" value="<%= @confirm_password %>">
+
+            <input type="submit" value="変更">
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

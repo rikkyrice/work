@@ -1,0 +1,65 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">クルーの情報編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <% if @error_message %>
+          <div class="form-error">
+            <%= @error_message %>
+          </div>
+        <% else %>
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <%= form_tag("/users/#{@user.id}/update") do %>
+        <% if @current_user.chief == 1 && @current_user.id != @user.id %>
+          <p>クルー名</p>
+          <input name="name" value="<%= @user.name %>">
+
+          <p>パートコード</p>
+          <input name="partcord" value="<%= @user.partcord %>">
+
+          <% if @user.chief == 1 %>
+            <input type="radio" name="chief" checked="true" value="1" id="chief"><label for="chief" style="width: 125px;">チーフ/リーダー</label>
+          <% else %>
+            <input type="radio" name="chief" value="1" id="chief"><label for="chief" style="width: 125px;">チーフ/リーダー</label>
+          <% end %>
+
+          <div class="post-menus">
+            <%= link_to("クルーを消す", "/users/#{@user.id}/destroy") %>
+          </div>
+
+          <input type="submit" value="完了">
+        <% end %>
+
+        <% if @current_user.chief == 1 && @current_user.id == @user.id %>
+          <p>クルー名</p>
+          <input name="name" value="<%= @user.name %>">
+
+          <p>パートコード</p>
+          <input name="partcord" value="<%= @user.partcord %>">
+
+          <input type="radio" name="chief" checked="true" value="1" id="chief"><label for="chief" style="width: 125px;">チーフ/リーダー</label>
+
+          <p><%= link_to("パスワードを変更する","/users/#{@user.id}/change_pwd") %></p>
+
+          <div class="post-menus">
+            <%= link_to("クルーを消す", "/users/#{@user.id}/destroy") %>
+          </div>
+
+          <input type="submit" value="完了">
+        <% end %>
+
+      <% end %>
+
+      <% if @current_user.chief != 1 %>
+        <p><%= link_to("パスワードを変更する","/users/#{@user.id}/change_pwd") %></p>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

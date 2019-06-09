@@ -1,0 +1,21 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <div class="form-heading">本当に消しますか？</div>
+      <div class="form users-form">
+        <div class="form-body">
+          <% if @error_message %>
+            <div class="form-error">
+              <%= @message %>
+            </div>
+          <% end %>
+          <%= form_tag("/users/#{@user.id}/destroy") do %>
+            <h2><%= @user.name %></h2>
+            <p><%= @user.partcord %></p>
+            <input type="submit" value="削除">
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

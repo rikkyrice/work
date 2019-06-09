@@ -1,0 +1,439 @@
+<div class="main users-index">
+  <%= form_tag("/users/#{@current_user.id}/#{@thatdate.full_date.to_s}/shift") do %>
+  <div class="btn-group">
+    <div class="shift-container-btn confirm" id="confirm" style="float: left;">確認</div>
+    <div><input type="submit" value="送信" class="shift-container-btn submit" style="float: right;"></div>
+  </div>
+  <div class="shift-container">
+
+      <div class="shift-sending-item">
+        <% if @thatdate.full_date.national_holiday? %>
+          <p style="color: red;"><%= @thatdate.full_date.day %>日 月曜日</p>
+        <% else %>
+          <p><%= @thatdate.full_date.day %>日 月曜日</p>
+        <% end %>
+        <div id="mon-menu">
+          <% if @crewshift.mon914 == nil %>
+            <input type="radio" name="mon914" value="9-14" id="mon914"><label for="mon914">9-14</label>
+          <% else %>
+            <input type="radio" name="mon914" value="9-14" checked id="mon914"><label for="mon914">9-14</label>
+          <% end %>
+          <% if @thatdate.full_date.national_holiday? %>
+            <% if @crewshift.mon1115 == nil %>
+              <input type="radio" name="mon1115" value="11-15" id="mon1115"><label for="mon1115">11-15</label>
+            <% else %>
+              <input type="radio" name="mon1115" value="11-15" checked="true" id="mon1115"><label for="mon1115">11-15</label>
+            <% end %>
+            <% if @crewshift.mon115155 == nil %>
+              <input type="radio" name="mon115155" value="11.5-15.5" id="mon115155"><label for="mon115155">11.5-15.5</label>
+            <% else %>
+              <input type="radio" name="mon115155" value="11.5-15.5" checked="true" id="mon115155"><label for="mon115155">11.5-15.5</label>
+            <% end %>
+          <% else %>
+            <% if @crewshift.mon10515 == nil %>
+              <input type="radio" name="mon10515" value="10.5-15" id="mon10515"><label for="mon10515">10.5-15</label>
+            <% else %>
+              <input type="radio" name="mon10515" value="10.5-15" checked="true" id="mon10515"><label for="mon10515">10.5-15</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.mon1217 == nil %>
+            <input type="radio" name="mon1217" value="12-17" id="mon1217"><label for="mon1217">12-17</label>
+          <% else %>
+            <input type="radio" name="mon1217" value="12-17" checked="true" id="mon1217"><label for="mon1217">12-17</label>
+          <% end %>
+          <% if @crewshift.mon1722 == nil %>
+            <input type="radio" name="mon1722" value="17-22" id="mon1722"><label for="mon1722">17-22</label>
+          <% else %>
+            <input type="radio" name="mon1722" value="17-22" checked="true" id="mon1722"><label for="mon1722">17-22</label>
+          <% end %>
+          <% if @crewshift.mon1822 == nil %>
+            <input type="radio" name="mon1822" value="18-22" id="mon1822"><label for="mon1822">18-22</label>
+          <% else %>
+            <input type="radio" name="mon1822" value="18-22" checked="true" id="mon1822"><label for="mon1822">18-22</label>
+          <% end %>
+          <% if @thatdate.full_date.tomorrow.national_holiday? %>
+          <% else %>
+            <% if @crewshift.mon228 == nil %>
+              <input type="radio" name="mon228" value="22-8" id="mon228"><label for="mon228">22-8</label>
+            <% else %>
+              <input type="radio" name="mon228" value="22-8" checked="true" id="mon228"><label for="mon228">22-8</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.mon229 == nil %>
+            <input type="radio" name="mon229" value="22-9" id="mon229"><label for="mon229">22-9</label>
+          <% else %>
+            <input type="radio" name="mon229" value="22-9" checked="true" id="mon229"><label for="mon229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="mon-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item" id="shift-menu">
+        <% tuesday = @thatdate.full_date + 1.day %>
+        <% if tuesday.national_holiday? %>
+          <p style="color: red;"><%= tuesday.day %>日 火曜日</p>
+        <% else %>
+          <p><%= tuesday.day %>日 火曜日</p>
+        <% end %>
+        <div id="tue-menu">
+          <% if @crewshift.tue914 == nil %>
+            <input type="radio" name="tue914" value="9-14" id="tue914"><label for="tue914">9-14</label>
+          <% else %>
+            <input type="radio" name="tue914" value="9-14" checked="true" id="tue914"><label for="tue914">9-14</label>
+          <% end %>
+          <% if tuesday.national_holiday? %>
+            <% if @crewshift.tue1115 == nil %>
+              <input type="radio" name="tue1115" value="11-15" id="tue1115"><label for="tue1115">11-15</label>
+            <% else %>
+              <input type="radio" name="tue1115" value="11-15" checked="true" id="tue1115"><label for="tue1115">11-15</label>
+            <% end %>
+            <% if @crewshift.tue115155 == nil %>
+              <input type="radio" name="tue115155" value="11.5-15.5" id="tue115155"><label for="tue115155">11.5-15.5</label>
+            <% else %>
+              <input type="radio" name="tue115155" value="11.5-15.5" checked="true" id="tue115155"><label for="tue115155">11.5-15.5</label>
+            <% end %>
+          <% else %>
+            <% if @crewshift.tue10515 == nil %>
+              <input type="radio" name="tue10515" value="10.5-15" id="tue10515"><label for="tue10515">10.5-15</label>
+            <% else %>
+              <input type="radio" name="tue10515" value="10.5-15" checked="true" id="tue10515"><label for="tue10515">10.5-15</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.tue1217 == nil %>
+            <input type="radio" name="tue1217" value="12-17" id="tue1217"><label for="tue1217">12-17</label>
+          <% else %>
+            <input type="radio" name="tue1217" value="12-17" checked="true" id="tue1217"><label for="tue1217">12-17</label>
+          <% end %>
+          <% if @crewshift.tue1722 == nil %>
+            <input type="radio" name="tue1722" value="17-22" id="tue1722"><label for="tue1722">17-22</label>
+          <% else %>
+            <input type="radio" name="tue1722" value="17-22" checked="true" id="tue1722"><label for="tue1722">17-22</label>
+          <% end %>
+          <% if @crewshift.tue1822 == nil %>
+            <input type="radio" name="tue1822" value="18-22" id="tue1822"><label for="tue1822">18-22</label>
+          <% else %>
+            <input type="radio" name="tue1822" value="18-22" checked="true" id="tue1822"><label for="tue1822">18-22</label>
+          <% end %>
+          <% if tuesday.tomorrow.national_holiday? %>
+          <% else %>
+            <% if @crewshift.tue228 == nil %>
+              <input type="radio" name="tue228" value="22-8" id="tue228"><label for="tue228">22-8</label>
+            <% else %>
+              <input type="radio" name="tue228" value="22-8" checked="true" id="tue228"><label for="tue228">22-8</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.tue229 == nil %>
+            <input type="radio" name="tue229" value="22-9" id="tue229"><label for="tue229">22-9</label>
+          <% else %>
+            <input type="radio" name="tue229" value="22-9" checked="true" id="tue229"><label for="tue229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="tue-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item"　id="shift-menu">
+        <% wednesday = @thatdate.full_date + 2.day %>
+        <% if wednesday.national_holiday? %>
+          <p style="color: red;"><%= wednesday.day %>日 水曜日</p>
+        <% else %>
+          <p><%= wednesday.day %>日 水曜日</p>
+        <% end %>
+        <div id="wed-menu">
+          <% if @crewshift.wed914 == nil %>
+            <input type="radio" name="wed914" value="9-14" id="wed914"><label for="wed914">9-14</label>
+          <% else %>
+            <input type="radio" name="wed914" value="9-14" checked="true" id="wed914"><label for="wed914">9-14</label>
+          <% end %>
+          <% if wednesday.national_holiday? %>
+            <% if @crewshift.wed1115 == nil %>
+              <input type="radio" name="wed1115" value="11-15" id="wed1115"><label for="wed1115">11-15</label>
+            <% else %>
+              <input type="radio" name="wed1115" value="11-15" checked="true" id="wed1115"><label for="wed1115">11-15</label>
+            <% end %>
+            <% if @crewshift.wed115155 == nil %>
+              <input type="radio" name="wed115155" value="11.5-15.5" id="wed115155"><label for="wed115155">11.5-15.5</label>
+            <% else %>
+              <input type="radio" name="wed115155" value="11.5-15.5" checked="true" id="wed115155"><label for="wed115155">11.5-15.5</label>
+            <% end %>
+          <% else %>
+            <% if @crewshift.wed10515 == nil %>
+              <input type="radio" name="wed10515" value="10.5-15" id="wed10515"><label for="wed10515">10.5-15</label>
+            <% else %>
+              <input type="radio" name="wed10515" value="10.5-15" checked="true" id="wed10515"><label for="wed10515">10.5-15</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.wed1217 == nil %>
+            <input type="radio" name="wed1217" value="12-17" id="wed1217"><label for="wed1217">12-17</label>
+          <% else %>
+            <input type="radio" name="wed1217" value="12-17" checked="true" id="wed1217"><label for="wed1217">12-17</label>
+          <% end %>
+          <% if @crewshift.wed1722 == nil %>
+            <input type="radio" name="wed1722" value="17-22" id="wed1722"><label for="wed1722">17-22</label>
+          <% else %>
+            <input type="radio" name="wed1722" value="17-22" checked="true" id="wed1722"><label for="wed1722">17-22</label>
+          <% end %>
+          <% if @crewshift.wed1822 == nil %>
+            <input type="radio" name="wed1822" value="18-22" id="wed1822"><label for="wed1822">18-22</label>
+          <% else %>
+            <input type="radio" name="wed1822" value="18-22" checked="true" id="wed1822"><label for="wed1822">18-22</label>
+          <% end %>
+          <% if wednesday.tomorrow.national_holiday? %>
+          <% else %>
+            <% if @crewshift.wed228 == nil %>
+              <input type="radio" name="wed228" value="22-8" id="wed228"><label for="wed228">22-8</label>
+            <% else %>
+              <input type="radio" name="wed228" value="22-8" checked="true" id="wed228"><label for="wed228">22-8</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.wed229 == nil %>
+            <input type="radio" name="wed229" value="22-9" id="wed229"><label for="wed229">22-9</label>
+          <% else %>
+            <input type="radio" name="wed229" value="22-9" checked="true" id="wed229"><label for="wed229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="wed-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item"　id="shift-menu">
+        <% thursday = @thatdate.full_date + 3.day %>
+        <% if thursday.national_holiday? %>
+          <p style="color: red;"><%= thursday.day %>日 木曜日</p>
+        <% else %>
+          <p><%= thursday.day %>日 木曜日</p>
+        <% end %>
+        <div id="thu-menu">
+          <% if @crewshift.thu914 == nil %>
+            <input type="radio" name="thu914" value="9-14" id="thu914"><label for="thu914">9-14</label>
+          <% else %>
+            <input type="radio" name="thu914" value="9-14" checked="true" id="thu914"><label for="thu914">9-14</label>
+          <% end %>
+          <% if thursday.national_holiday? %>
+            <% if @crewshift.thu1115 == nil %>
+              <input type="radio" name="thu1115" value="11-15" id="thu1115"><label for="thu1115">11-15</label>
+            <% else %>
+              <input type="radio" name="thu1115" value="11-15" checked="true" id="thu1115"><label for="thu1115">11-15</label>
+            <% end %>
+            <% if @crewshift.thu115155 == nil %>
+              <input type="radio" name="thu115155" value="11.5-15.5" id="thu115155"><label for="thu115155">11.5-15.5</label>
+            <% else %>
+              <input type="radio" name="thu115155" value="11.5-15.5" checked="true" id="thu115155"><label for="thu115155">11.5-15.5</label>
+            <% end %>
+          <% else %>
+            <% if @crewshift.thu10515 == nil %>
+              <input type="radio" name="thu10515" value="10.5-15" id="thu10515"><label for="thu10515">10.5-15</label>
+            <% else %>
+              <input type="radio" name="thu10515" value="10.5-15" checked="true" id="thu10515"><label for="thu10515">10.5-15</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.thu1217 == nil %>
+            <input type="radio" name="thu1217" value="12-17" id="thu1217"><label for="thu1217">12-17</label>
+          <% else %>
+            <input type="radio" name="thu1217" value="12-17" checked="true" id="thu1217"><label for="thu1217">12-17</label>
+          <% end %>
+          <% if @crewshift.thu1722 == nil %>
+            <input type="radio" name="thu1722" value="17-22" id="thu1722"><label for="thu1722">17-22</label>
+          <% else %>
+            <input type="radio" name="thu1722" value="17-22" checked="true" id="thu1722"><label for="thu1722">17-22</label>
+          <% end %>
+          <% if @crewshift.thu1822 == nil %>
+            <input type="radio" name="thu1822" value="18-22" id="thu1822"><label for="thu1822">18-22</label>
+          <% else %>
+            <input type="radio" name="thu1822" value="18-22" checked="true" id="thu1822"><label for="thu1822">18-22</label>
+          <% end %>
+          <% if thursday.tomorrow.national_holiday? %>
+          <% else %>
+            <% if @crewshift.thu228 == nil %>
+              <input type="radio" name="thu228" value="22-8" id="thu228"><label for="thu228">22-8</label>
+            <% else %>
+              <input type="radio" name="thu228" value="22-8" checked="true" id="thu228"><label for="thu228">22-8</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.thu229 == nil %>
+            <input type="radio" name="thu229" value="22-9" id="thu229"><label for="thu229">22-9</label>
+          <% else %>
+            <input type="radio" name="thu229" value="22-9" checked="true" id="thu229"><label for="thu229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="thu-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item"　id="shift-menu">
+        <% friday = @thatdate.full_date + 4.day %>
+        <% if friday.national_holiday? %>
+          <p style="color: red;"><%= friday.day %>日 金曜日</p>
+        <% else %>
+          <p><%= friday.day %>日 金曜日</p>
+        <% end %>
+        <div id="fri-menu">
+          <% if @crewshift.fri914 == nil %>
+            <input type="radio" name="fri914" value="9-14" id="fri914"><label for="fri914">9-14</label>
+          <% else %>
+            <input type="radio" name="fri914" value="9-14" checked="true" id="fri914"><label for="fri914">9-14</label>
+          <% end %>
+          <% if friday.national_holiday? %>
+            <% if @crewshift.fri1115 == nil %>
+              <input type="radio" name="fri1115" value="11-15" id="fri1115"><label for="fri1115">11-15</label>
+            <% else %>
+              <input type="radio" name="fri1115" value="11-15" checked="true" id="fri1115"><label for="fri1115">11-15</label>
+            <% end %>
+            <% if @crewshift.fri115155 == nil %>
+              <input type="radio" name="fri115155" value="11.5-15.5" id="fri115155"><label for="fri115155">11.5-15.5</label>
+            <% else %>
+              <input type="radio" name="fri115155" value="11.5-15.5" checked="true" id="fri115155"><label for="fri115155">11.5-15.5</label>
+            <% end %>
+          <% else %>
+            <% if @crewshift.fri10515 == nil %>
+              <input type="radio" name="fri10515" value="10.5-15" id="fri10515"><label for="fri10515">10.5-15</label>
+            <% else %>
+              <input type="radio" name="fri10515" value="10.5-15" checked="true" id="fri10515"><label for="fri10515">10.5-15</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.fri1217 == nil %>
+            <input type="radio" name="fri1217" value="12-17" id="fri1217"><label for="fri1217">12-17</label>
+          <% else %>
+            <input type="radio" name="fri1217" value="12-17" checked="true" id="fri1217"><label for="fri1217">12-17</label>
+          <% end %>
+          <% if @crewshift.fri1722 == nil %>
+            <input type="radio" name="fri1722" value="17-22" id="fri1722"><label for="fri1722">17-22</label>
+          <% else %>
+            <input type="radio" name="fri1722" value="17-22" checked="true" id="fri1722"><label for="fri1722">17-22</label>
+          <% end %>
+          <% if @crewshift.fri1822 == nil %>
+            <input type="radio" name="fri1822" value="18-22" id="fri1822"><label for="fri1822">18-22</label>
+          <% else %>
+            <input type="radio" name="fri1822" value="18-22" checked="true" id="fri1822"><label for="fri1822">18-22</label>
+          <% end %>
+          <% if friday.national_holiday? %>
+          <% else %>
+            <% if @crewshift.fri19522 == nil %>
+              <input type="radio" name="fri19522" value="19.5-22" id="fri19522"><label for="fri19522">19.5-22</label>
+            <% else %>
+              <input type="radio" name="fri19522" value="19.5-22" checked="true" id="fri19522"><label for="fri19522">19.5-22</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.fri229 == nil %>
+            <input type="radio" name="fri229" value="22-9" id="fri229"><label for="fri229">22-9</label>
+          <% else %>
+            <input type="radio" name="fri229" value="22-9" checked="true" id="fri229"><label for="fri229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="fri-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item"　id="shift-menu">
+        <% saturday = @thatdate.full_date + 5.day %>
+        <% if saturday.national_holiday? %>
+          <p style="color: red;"><%= saturday.day %>日 土曜日</p>
+        <% else %>
+          <p style="color: blue;"><%= saturday.day %>日 土曜日</p>
+        <% end %>
+        <div id="sat-menu">
+          <% if @crewshift.sat914 == nil %>
+            <input type="radio" name="sat914" value="9-14" id="sat914"><label for="sat914">9-14</label>
+          <% else %>
+            <input type="radio" name="sat914" value="9-14" checked="true" id="sat914"><label for="sat914">9-14</label>
+          <% end %>
+          <% if @crewshift.sat1115 == nil %>
+            <input type="radio" name="sat1115" value="11-15" id="sat1115"><label for="sat1115">11-15</label>
+          <% else %>
+            <input type="radio" name="sat1115" value="11-15" checked="true" id="sat1115"><label for="sat1115">11-15</label>
+          <% end %>
+          <% if @crewshift.sat115155 == nil %>
+            <input type="radio" name="sat115155" value="11.5-15.5" id="sat115155"><label for="sat115155">11.5-15.5</label>
+          <% else %>
+            <input type="radio" name="sat115155" value="11.5-15.5" checked="true" id="sat115155"><label for="sat115155">11.5-15.5</label>
+          <% end %>
+          <% if @crewshift.sat1217 == nil %>
+            <input type="radio" name="sat1217" value="12-17" id="sat1217"><label for="sat1217">12-17</label>
+          <% else %>
+            <input type="radio" name="sat1217" value="12-17" checked="true" id="sat1217"><label for="sat1217">12-17</label>
+          <% end %>
+          <% if @crewshift.sat1722 == nil %>
+            <input type="radio" name="sat1722" value="17-22" id="sat1722"><label for="sat1722">17-22</label>
+          <% else %>
+            <input type="radio" name="sat1722" value="17-22" checked="true" id="sat1722"><label for="sat1722">17-22</label>
+          <% end %>
+          <% if @crewshift.sat1822 == nil %>
+            <input type="radio" name="sat1822" value="18-22" id="sat1822"><label for="sat1822">18-22</label>
+          <% else %>
+            <input type="radio" name="sat1822" value="18-22" checked="true" id="sat1822"><label for="sat1822">18-22</label>
+          <% end %>
+          <% if @crewshift.sat229 == nil %>
+            <input type="radio" name="sat229" value="22-9" id="sat229"><label for="sat229">22-9</label>
+          <% else %>
+            <input type="radio" name="sat229" value="22-9" checked="true" id="sat229"><label for="sat229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="sat-shift-menu-down"></i>
+      </div>
+
+      <div class="shift-sending-item"　id="shift-menu">
+        <% sunday = @thatdate.full_date + 6.day %>
+        <p style="color: red;"><%= sunday.day %>日 日曜日</p>
+        <div id="sun-menu">
+          <% if @crewshift.sun914 == nil %>
+            <input type="radio" name="sun914" value="9-14" id="sun914"><label for="sun914">9-14</label>
+          <% else %>
+            <input type="radio" name="sun914" value="9-14" checked="true" id="sun914"><label for="sun914">9-14</label>
+          <% end %>
+          <% if @crewshift.sun1115 == nil %>
+            <input type="radio" name="sun1115" value="11-15" id="sun1115"><label for="sun1115">11-15</label>
+          <% else %>
+            <input type="radio" name="sun1115" value="11-15" checked="true" id="sun1115"><label for="sun1115">11-15</label>
+          <% end %>
+          <% if @crewshift.sun115155 == nil %>
+            <input type="radio" name="sun115155" value="11.5-15.5" id="sun115155"><label for="sun115155">11.5-15.5</label>
+          <% else %>
+            <input type="radio" name="sun115155" value="11.5-15.5" checked="true" id="sun115155"><label for="sun115155">11.5-15.5</label>
+          <% end %>
+          <% if @crewshift.sun1217 == nil %>
+            <input type="radio" name="sun1217" value="12-17" id="sun1217"><label for="sun1217">12-17</label>
+          <% else %>
+            <input type="radio" name="sun1217" value="12-17" checked="true" id="sun1217"><label for="sun1217">12-17</label>
+          <% end %>
+          <% if @crewshift.sun1722 == nil %>
+            <input type="radio" name="sun1722" value="17-22" id="sun1722"><label for="sun1722">17-22</label>
+          <% else %>
+            <input type="radio" name="sun1722" value="17-22" checked="true" id="sun1722"><label for="sun1722">17-22</label>
+          <% end %>
+          <% if @crewshift.sun1822 == nil %>
+            <input type="radio" name="sun1822" value="18-22" id="sun1822"><label for="sun1822">18-22</label>
+          <% else %>
+            <input type="radio" name="sun1822" value="18-22" checked="true" id="sun1822"><label for="sun1822">18-22</label>
+          <% end %>
+          <% if sunday.tomorrow.national_holiday? %>
+          <% else %>
+            <% if @crewshift.sun228 == nil %>
+              <input type="radio" name="sun228" value="22-8" id="sun228"><label for="sun228">22-8</label>
+            <% else %>
+              <input type="radio" name="sun228" value="22-8" checked="true" id="sun228"><label for="sun228">22-8</label>
+            <% end %>
+          <% end %>
+          <% if @crewshift.sun229 == nil %>
+            <input type="radio" name="sun229" value="22-9" id="sun229"><label for="sun229">22-9</label>
+          <% else %>
+            <input type="radio" name="sun229" value="22-9" checked="true" id="sun229"><label for="sun229">22-9</label>
+          <% end %>
+        </div>
+        <i class="fas fa-angle-down" id="sun-shift-menu-down"></i>
+      </div>
+
+      <div id="confirm-window">
+        <p id="confirm-delete">×</p>
+        <div class="confirm-item">
+          <p id="mon"></p>
+          <p id="tue"></p>
+          <p id="wed"></p>
+          <p id="thu"></p>
+          <p id="fri"></p>
+          <p id="sat"></p>
+          <p id="sun"></p>
+        </div>
+        <div class="shift-container-btn shift-delete" id="shift-delete">全解除</div>
+      </div>
+
+      <div class="overlay"></div>
+
+    <% end %>
+  </div>
+</div>
